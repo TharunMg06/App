@@ -9,9 +9,9 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'cd app'
+        
        
-        sh 'docker build . --tag api'
+        sh 'docker build -t api .'
         sh 'docker run -p 3000:3000 -d --name app-api api'
       }
     }
