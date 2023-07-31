@@ -1,11 +1,9 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
-WORKDIR /app
-COPY . .
-RUN dotnet restore
-RUN dotnet publish -o /app/published-app --configuration Release
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /src
+COPY MyFile.cs Program.cs
+RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine as runtime
+FROM mcr.microsoft.com/dotnet/runtime:6.0
 WORKDIR /app
-COPY --from=build /app/published-app /app
-ENV ASPNETCORE_ENVIRONMENT=container
-ENTRYPOINT [ "dotnet", "/app/api.dll" ]
+COPY --from=build-env /app/out .
+ENTRYPOINT ["dotnet", "app.dll"]
