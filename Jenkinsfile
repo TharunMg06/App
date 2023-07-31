@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Git Pull') {
       steps {
-        sh 'cd /opt/app'
+        sh 'cd /opt'
         sh 'git pull "https://github.com/TharunMg06/app.git" '
       }
     }
