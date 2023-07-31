@@ -1,3 +1,7 @@
+public static void Main(string[] args)
+{
+    
+}
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
 WORKDIR /app
 
