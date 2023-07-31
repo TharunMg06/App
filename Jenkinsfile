@@ -4,7 +4,7 @@ pipeline {
     stage('Git Pull') {
       steps {
         sh 'cd /opt'
-        git clone 'https://github.com/TharunMg06/app.git'
+        sh 'git clone "https://github.com/TharunMg06/app.git" '
       }
     }
     stage('Build') {
