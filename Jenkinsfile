@@ -10,9 +10,7 @@ pipeline {
     stage('Build') {
       steps {
         
-       
         sh 'docker build -t api .'
-        sh 'docker run -p 3000:3000 -d --name app-api api'
       }
     }
     stage('Deploy') {
