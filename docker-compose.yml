@@ -6,7 +6,7 @@ app:
     image: app
     build:
         context: .
-        dockerfile: Dockerfile
+        dockerfile: dockerfile
         target: runtime
     restart: always
     ports:
