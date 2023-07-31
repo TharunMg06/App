@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
 WORKDIR /app
 
 COPY api.csproj .
