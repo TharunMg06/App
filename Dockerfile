@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
 WORKDIR /app
-
+ADD opt/opt/dotnet6-openapi/api
 COPY api.csproj .
 
 RUN dotnet restore
