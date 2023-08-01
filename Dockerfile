@@ -13,5 +13,5 @@ WORKDIR /app
 
 
 
-ENTRYPOINT ["dotnet", "MyApp.dll"]
+ENTRYPOINT ["dotnet"]
 
