@@ -12,7 +12,7 @@ pipeline {
         script{
         sh 'docker build -t api .'
         sh 'docker tag api:latest nandha13/task:tagname'
-        docker.withRegistry("", "DockerHubCredentials") {
+        docker.withRegistry("", "DockerHub") {
         def image = docker.image("nandha13/task:tagname");
           image.push()
       }
