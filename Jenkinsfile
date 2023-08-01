@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Deploy Docker Image to Kubernetes') {
       steps {
-        sh 'kubectl apply -f docker-compose.yaml'
+        sh 'kubectl apply -f docker-compose.yml'
       }
     }
  
