@@ -11,13 +11,11 @@ pipeline {
       steps {
         
         sh 'docker build -t api .'
+        sh 'docker tag api:latest nandha13/task:tagname '
+        sh 'docker push nandha13/task:tagname '
       }
     }
-    stage('Deploy Docker Image to Kubernetes') {
-      steps {
-        sh 'kubectl apply -f docker-compose.yml'
-      }
-    }
+ 
  
   }
 }
