@@ -13,10 +13,6 @@ pipeline {
         sh 'docker build -t api .'
       }
     }
-    stage('Deploy') {
-      steps {
-        sh 'curl localhost:3000'
-      }
-    }
+ 
   }
 }
