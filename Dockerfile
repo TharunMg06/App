@@ -1,17 +1,21 @@
   
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
-WORKDIR /app
+WORKDIR /src
 
-COPY api.csproj .
-RUN dotnet restore api.csproj
+COPY src/*.csproj .
 
-COPY . .
+RUN dotnet restore
+
+COPY src .
+
 RUN dotnet publish -c Release -o out
 
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime
-WORKDIR /app
-COPY --from=build /app/out ./
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
-ENTRYPOINT ["dotnet", "<your app>.dll"]
+WORKDIR /app
+
+COPY --from=build-env /src/out .
+
+ENTRYPOINT ["dotnet", "MyApp.dll"]
 
