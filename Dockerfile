@@ -7,8 +7,6 @@ COPY api.csproj .
 
 RUN dotnet restore
 
-COPY app .
-
 RUN dotnet publish -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
