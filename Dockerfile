@@ -1,7 +1,7 @@
 public static void Main(string[] args)
 {
     
-}
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
 WORKDIR /app
 
@@ -16,3 +16,4 @@ WORKDIR /app
 COPY --from=build /app/out ./
 
 ENTRYPOINT ["dotnet", "<your app>.dll"]
+}
