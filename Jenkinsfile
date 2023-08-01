@@ -13,6 +13,11 @@ pipeline {
         sh 'docker build -t api .'
       }
     }
+    stage('Deploy Docker Image to Kubernetes') {
+      steps {
+        sh 'kubectl apply -f deployment.yaml'
+      }
+    }
  
   }
 }
