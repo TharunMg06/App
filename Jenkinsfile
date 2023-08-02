@@ -10,8 +10,8 @@ pipeline {
     stage('Build') {
       steps {
         script{
-        sh 'docker build -t api .'
-        sh 'docker tag api:latest nandha13/task:tagname'
+        sh 'docker build -t vmi .'
+        sh 'docker tag vmi:latest nandha13/demo:tagname'
         docker.withRegistry("", "DockerHub") {
         def image = docker.image("nandha13/task:tagname");
           image.push()
