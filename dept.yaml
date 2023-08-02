@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vmi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vmi
+  template:
+    metadata:
+      labels:
+        app: vmi
+    spec:
+      containers:
+      - name: vmi
+        image: nandha13/demo:tagname
+        ports:
+        - containerPort: 80
