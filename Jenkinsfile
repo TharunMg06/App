@@ -19,10 +19,14 @@ pipeline {
         } 
         }
     }
-       stage('Deploy YAML file') {
+    stage('Start Minikube') {
       steps {
         sh 'minikube start'
-        sh 'minikube kubectl -- apply -f dept.yaml'
+      }
+    }
+    stage('Deploy application') {
+      steps {
+        sh 'kubectl apply -f dept.yaml'
       }
     }
  
