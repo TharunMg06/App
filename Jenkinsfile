@@ -13,7 +13,7 @@ pipeline {
         sh 'docker build -t vmi .'
         sh 'docker tag vmi:latest nandha13/demo:tagname'
         docker.withRegistry("", "DockerHub") {
-        def image = docker.image("nandha13/task:tagname");
+        def image = docker.image("nandha13/demo:tagname");
           image.push()
       }
         } 
