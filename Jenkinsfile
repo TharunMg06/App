@@ -19,13 +19,6 @@ pipeline {
         } 
         }
     }
-  stage('Deploying') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "dept.yaml","svc.yaml")
-        }
-      }
-    }
- 
+
   }
 }
