@@ -19,17 +19,13 @@ pipeline {
         } 
         }
     }
-    stage('Start Minikube') {
+  stage('Deploying') {
       steps {
-        sh 'minikube start'
+        script {
+          kubernetesDeploy(configs: "dept.yaml")
+        }
       }
     }
-    stage('Deploy application') {
-      steps {
-        sh 'kubectl apply -f dept.yaml'
-      }
-    }
- 
  
   }
 }
