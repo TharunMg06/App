@@ -21,7 +21,8 @@ pipeline {
     }
        stage('Deploy YAML file') {
       steps {
-        sh 'kubectl -- apply -f dept.yaml'
+        sh 'minikube start'
+        sh 'minikube kubectl -- apply -f dept.yaml'
       }
     }
  
