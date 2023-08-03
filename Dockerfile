@@ -1,13 +1,24 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
-WORKDIR /app
-COPY . .
-RUN dotnet restore
-RUN dotnet publish -o /app/published-app --configuration Release
+FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine as runtime
-WORKDIR /app
-COPY --from=build /app/published-app /app
-ENV ASPNETCORE_ENVIRONMENT=container
-EXPOSE 80
-ENTRYPOINT [ "dotnet", "/app/api.dll" ]
+ENV ASPNETCORE_ENVIRONMENT=Development \
+    DOTNET_RUNNING_IN_CONTAINER=true \
+    COMPlus_EnableDiagnostics=0
+
+COPY . /opt
+
+RUN cd /opt  dotnet restore api.csproj && dotnet build api.csproj -c Release && dotnet publish api.csproj -c Release -o ./publish
+RUN cd dotnet publish api.csproj -c Release -o ./publish
+
+ 
+
+RUN cd /opt/publish
+
+WORKDIR /opt/publish
+
+ 
+
+EXPOSE 8081
+
+ENTRYPOINT ["dotnet", "api.dll"]
+
 
