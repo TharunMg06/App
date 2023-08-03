@@ -7,7 +7,7 @@ ENV ASPNETCORE_ENVIRONMENT=Development \
 COPY . /opt
 
 RUN cd /opt  dotnet restore api.csproj && dotnet build api.csproj -c Release && dotnet publish api.csproj -c Release -o ./publish
-RUN cd dotnet publish api.csproj -c Release -o ./publish
+RUN  dotnet publish api.csproj -c Release -o ./publish
 
  
 
